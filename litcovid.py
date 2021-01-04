@@ -117,7 +117,7 @@ def load_data(path:str, with_labels:bool=True, feature:str='both'):
     if with_labels:
         y = df.topics
     else:
-        y = [[]*len(X)]
+        y = [[]]*len(X)
     return X,y, df
 
 def save_predictions(df, path):
@@ -335,6 +335,6 @@ if __name__ == '__main__':
             print(classification_report(y_valid, bert_predict, target_names=classes))
         
         if args.mode == 'predict':
-            df['topic_predictions'] = mb.inverse_transform(bert_predict).astype(list)
+            df['topic_predictions'] = mb.inverse_transform(bert_predict)
             save_predictions(df, args.predict_path)
 
